@@ -1,0 +1,201 @@
+﻿@model IEnumerable<WebApplicationOnlineShop.Models.Uploads>
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_GuestLayout.cshtml";
+}
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');body {
+            background-color: #eeeeee;
+            font-family: 'Open Sans',serif;
+            font-size: 14px
+        }
+
+        .container-fluid {
+            margin-top: 70px
+        }
+
+        .card-body {
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            padding: 1.40rem
+        }
+
+        .img-sm {
+            width: 80px;
+            height: 80px
+        }
+
+        .itemside .info {
+            padding-left: 15px;
+            padding-right: 7px
+        }
+
+        .table-shopping-cart .price-wrap {
+            line-height: 1.2
+        }
+
+        .table-shopping-cart .price {
+            font-weight: bold;
+            margin-right: 5px;
+            display: block
+        }
+
+        .text-muted {
+            color: #969696 !important
+        }
+
+        a {
+            text-decoration: none !important
+        }
+
+        .card {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0,0,0,.125);
+            border-radius: 0px
+        }
+
+        .itemside {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            width: 100%
+        }
+
+        .dlist-align {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex
+        }
+
+        [class*="dlist-"] {
+            margin-bottom: 5px
+        }
+
+        .coupon {
+            border-radius: 1px
+        }
+
+        .price {
+            font-weight: 600;
+            color: #212529
+        }
+
+        .btn.btn-out {
+            outline: 1px solid #fff;
+            outline-offset: -5px
+        }
+
+        .btn-main {
+            border-radius: 2px;
+            text-transform: capitalize;
+            font-size: 15px;
+            padding: 10px 19px;
+            cursor: pointer;
+            color: #fff;
+            width: 100%
+        }
+
+        .btn-light {
+            color: #ffffff;
+            background-color: #F44336;
+            border-color: #f8f9fa;
+            font-size: 12px
+        }
+
+            .btn-light:hover {
+                color: #ffffff;
+                background-color: #F44336;
+                border-color: #F44336
+            }
+
+        .btn-apply {
+            font-size: 11px
+        }
+    </style>
+    </head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="table table-borderless table-shopping-cart">
+                        <thead class="text-muted">
+                            <tr class="small text-uppercase">
+                                <th scope="col">Product</th>
+                                <th scope="col" width="120">Product Name</th>
+                                <th scope="col" width="120">Quantity</th>
+                                <th scope="col" width="120">Price</th>
+                                <th scope="col" width="120">Button</th>
+                                <th scope="col" width="120">Total</th>
+                                <th scope="col" class="text-right d-none d-md-block" width="200"></th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="@Url.Content(@item.Name)" height="100" width="100" />
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ProductName)
+                                    </td>
+                                    <td>
+                                        <div class="form-group row">
+                                            @Html.AntiForgeryToken()
+                                            @Html.DropDownListFor(model => item.Quantity, new List<SelectListItem>
+                                        {
+                                        new SelectListItem { Text="select",Value="select"},
+                                        new SelectListItem { Text="1",Value="One"},
+                                        new SelectListItem { Text="2",Value="Two"},
+                                        new SelectListItem { Text="3",Value="Three"},
+                                        new SelectListItem { Text="4",Value="Four"},
+                                        new SelectListItem { Text="5",Value="Five"},
+                                        new SelectListItem { Text="6",Value="Six"},
+                                        new SelectListItem { Text="7",Value="Seven"},
+                                        new SelectListItem { Text="8",Value="Eight"},
+                                        new SelectListItem { Text="9",Value="Nine"},
+                                        new SelectListItem { Text="10",Value="Ten"}
+                                        },
+                                        new
+                                        {
+                                        @class = "col-sm-9 inputGroupContainer"
+                                        })
+                                            @* @Html.DisplayFor(modelItem => item.Quantity)*@
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    </td>
+                                    <td><input type="button" name="btnMultiply" value="Submit" onclick="calculate()" /></td>
+                                    <td>
+                                        @Html.TextBoxFor(modelItem => item.Total)
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        }
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

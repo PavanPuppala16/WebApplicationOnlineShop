@@ -1,0 +1,109 @@
+﻿@using WebApplicationOnlineShop
+@model Upload
+@{
+    ViewData["Title"] = "Upload";
+    Layout = "~/Views/Shared/_GuestLayout.cshtml";
+}
+
+
+
+
+
+<html>
+<head>
+    <link href="Styles/JobStyle.css" type="text/css" rel="Stylesheet" />
+    <link href="Styles/gridstyles.css" rel="Stylesheet" type="text/css" />
+    <link href="Styles/Calendar.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="ndate/datetimepicker_css.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <style type="text/css">
+        #calendarContainerOverride table {
+            width: 0px;
+            height: 0px;
+        }
+
+
+
+
+
+            #calendarContainerOverride table tr td {
+                padding: 0;
+                margin: 0;
+            }
+
+
+
+
+
+        #success_message {
+            display: none;
+        }
+
+
+
+
+
+        section.py-5 {
+            padding: 48px 0 !important;
+        }
+    </style>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+</head>
+<body>
+    <h3>Add products</h3>
+    <section class="text-black">
+        <div class="container-fluid">
+            <div class="grid-container">
+                <div class="row">
+                </div>
+                <hr />
+                <div id="formgrid" class="formgrid">
+                    @using (Html.BeginForm("Upload", "Ecommerce", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="col-md-4 mt-md-0 mt-3 ">
+                            @Html.AntiForgeryToken()
+                            <label> Product Name :<span class="text-danger">*</span></label>
+                            <p style="border:inset">  @Html.TextBoxFor(model => model.Product_Name, new { @class = "form-control", placeholder="Enter product Name" })</p>
+                            @*@Html.ValidationMessageFor(model => model.Product_Name,"", new { @class = "text-danger" })*@
+                        </div>
+                        <div class="col-md-4 mt-md-0 mt-3 ">
+                            @Html.AntiForgeryToken()
+                            <label> Description & Price :<span class="text-danger">*</span></label>
+                            <p style="border:inset">  @Html.TextBoxFor(model => model.Description, new { @class = "form-control", placeholder="Enter Price" })</p>
+                            @*@Html.ValidationMessageFor(model => model.Description,"", new { @class = "text-danger" })*@
+                        </div>
+                        <div class="col-md-12 mt-md-0 mt-3">
+                            <div class="col-md-12 mt-md-0 mt-3">
+                                <label>Upload image:<span class="text-danger">*</span></label><input type="file" name="PostedFiles" multiple />
+                            </div>
+                            <div class="col-md-12 mt-md-0 mt-3">
+                                <h7 style="color:transparent">Hii</h7>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mt-md-0 mt-3">
+                            <div class="form-group row">
+                                <div class="col-sm-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">&nbsp;</label>
+                                        <div class="col-sm-5">
+                                            @*<button type="submit" class="btn-style2 mgn-top-btn">Submit</button> *@
+                                            <input type="submit" value="submit" class="btn-style2 mgn-top-btn" style="color:black;background-color:green" />
+                                            <a href="AddUsers" class="btn btn-danger" style="color:black;background-color:red">Cancel</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- End -->
+</body>
+</html>
+<!-- Content Start -->
+
+

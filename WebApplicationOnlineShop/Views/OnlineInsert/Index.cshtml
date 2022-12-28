@@ -1,0 +1,17 @@
+﻿
+@model IEnumerable<WebApplicationOnlineShop.Models.Uploads>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@*@foreach(var item in Model)
+{    <a asp-controller="Ecommerce"asp-action="Upload"><img id="@item.Id" src="@Url.Content(@item.Name)"     data-zoom-image="@Url.Content(@item.Name)" style="width:300px;height:300px" /></a>
+}*@
+
+
+@foreach (var item in Model)
+{
+    @Html.HiddenFor(modelItem => item.Id)   <button asp-controller="" asp-action=""><img id="@item.Id" src="@Url.Content(@item.Name)"      data-zoom-image="@Url.Content(@item.Name)" style="width:300px;height:300px" /><p style="color:black">@item.ProductName</p><p><label>₹</label>@item.Price</p><p>@Html.ActionLink("DETAILS", "Upload","Ecommerce", new { id=item.Id})</p></button>
+}
+

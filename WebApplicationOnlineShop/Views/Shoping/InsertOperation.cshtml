@@ -1,0 +1,59 @@
+﻿@using WebApplicationOnlineShop.Models;
+@model Product
+@{
+    ViewData["Title"] = "InsertOperation";
+    Layout = "~/Views/Shared/_GuestLayout.cshtml";
+}
+
+<h1>InsertOperation</h1>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Upload</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="signup-form mt-5 border p-4 bg-light shadow">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <h4 class="mb-5 text-secondary">Create Your Account</h4>
+                        <div class="row">
+                            <div class="mb-3 col-md-6">
+                                <label>P_Name<span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(model => model.P_Name, new { @class = "form-control", placeholder="Enter Roll No" })
+                                @Html.ValidationMessageFor(model => model.P_Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label> Price<span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(model => model.Price, new { @class = "form-control", placeholder="Enter Name" })
+                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="mb-3 col-md-6">
+                                <label>Image<span class="text-danger">*</span></label>
+                                @Html.TextBoxFor(model => model.Image, new { @class = "form-control", placeholder="Enter EmailID" })
+                                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-5">
+                                <input type="submit" class="btn btn-primary float-end" value="Submit">
+
+                            </div>
+                        </div>
+
+                    }
+                </div>
+</body>
+</html>
